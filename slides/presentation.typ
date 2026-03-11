@@ -437,6 +437,30 @@
 
   #section-slide([Appendix])[]
 
+  #slide[
+    === Wie meine privaten Repos seit Claude Code angewachsen sind
+    #align(center + horizon)[#image("assets/more_private_repos.png", height: 85%)]
+  ]
+
+  #slide[
+    === Claude Code: GitHub Commits
+    #align(center + horizon)[#image("assets/claude_code_gh_commits.png", height: 85%)]
+  ]
+
+  #content-slide([Claude Code: Der Wendepunkt])[
+    #text(size: 0.75em)[
+      *Quelle:* #link("https://newsletter.semianalysis.com/p/claude-code-is-the-inflection-point")[SemiAnalysis – „Claude Code Is The Inflection Point"]
+    ]
+
+    #v(0.8em)
+
+    - *4% aller öffentlichen GitHub-Commits* werden aktuell von Claude Code erstellt – Prognose: über 20% bis Ende 2026
+
+    - Führende Entwickler (Karpathy, Dahl) sehen manuelle Code-Erstellung als zunehmend obsolet – Ingenieure definieren Ziele, KI-Agenten implementieren
+
+    - Das READ-THINK-WRITE-VERIFY-Muster ist auf über 1 Mrd. Informationsarbeiter anwendbar (Finanzen, Recht, Consulting)
+  ]
+
   // ============================================================================
   // Pelican-Benchmark
   // ============================================================================
