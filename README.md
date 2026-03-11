@@ -6,19 +6,19 @@ A presentation about the risks and failure modes of agentic engineering, explori
 
 ## Download the Slides
 
-[Download the presentation (PDF)](https://github.com/MeKo-Christian/ai-workshop/releases/download/latest/presentation.pdf)
+[Download the presentation (PDF)](https://github.com/MeKo-Christian/agentic_engineering/releases/download/latest/presentation.pdf)
 
-[Download the handout (PDF)](https://github.com/MeKo-Christian/ai-workshop/releases/download/latest/handout.pdf)
+[Download the handout (PDF)](https://github.com/MeKo-Christian/agentic_engineering/releases/download/latest/handout.pdf)
 
 ## Example: Candy Crush Clone
 
 A neon-styled Candy Crush clone built with React and Vite:
 
-**[Play Neon Candy Crush](https://meko-christian.github.io/ai-workshop/candy/)**
+**[Play Neon Candy Crush](https://meko-christian.github.io/agentic_engineering/candy/)**
 
 ## Overview
 
-This presentation explores the emerging discipline of *agentic engineering* — using AI agents in software development workflows — and contrasts it with *vibe coding*: the practice of generating code via prompts without review or understanding.
+This presentation explores the emerging discipline of _agentic engineering_ — using AI agents in software development workflows — and contrasts it with _vibe coding_: the practice of generating code via prompts without review or understanding.
 
 The three HU-Drop game implementations serve as a live demonstration: the same prompt, three different models, three different results. None of the code was reviewed before publishing.
 
