@@ -394,8 +394,8 @@
 
         #v(0.4em)
 
-        - *Claude Code* — Sonnet 4.6, Opus 4.6
-        - *OpenAI Codex CLI* — GPT-5.2, GPT-5.3-Codex
+        - *Claude Code* — Sonnet 4.6, Opus 4.6)
+        - *OpenAI Codex CLI* — GPT-5.3-Codex, GPT-5.4,
         - *Gemini CLI* — Gemini 3.1 Pro (1M Tokens)
 
         #v(1em)
@@ -413,7 +413,7 @@
 
         #v(0.4em)
 
-        - *Cursor* — Sonnet, GPT-4.1, eigene Modelle
+        - *Cursor* — Verschiedene Modelle, Composer
         - *Windsurf* (Codeium) — SWE-1, Claude, GPT
         - *VS Code + Copilot* — Edits-Modus, Agent-Modus
 
@@ -432,15 +432,928 @@
   ]
 
   // ============================================================================
+  // Willison's Agentic Engineering Patterns
+  // ============================================================================
+
+  #section-slide([Agentic Engineering Patterns])[nach Simon Willison]
+
+  // --------------------------------------------------------------------------
+  // Code ist billig
+  // --------------------------------------------------------------------------
+
+  #slide[
+    === 💸 Code ist billig geworden
+
+    #v(0.3em)
+
+    #toolbox.side-by-side(
+      gutter: 3em,
+      [
+        *Früher:*
+
+        #v(0.5em)
+
+        - Einige hundert Zeilen sauberer, getesteter Code = ein voller Arbeitstag
+        - Features wurden nach Aufwand/Nutzen-Verhältnis priorisiert
+        - Refactoring „lohnt sich nicht"
+      ],
+      [
+        *Heute:*
+
+        #v(0.5em)
+
+        - Parallele Agenten: Implementierung, Tests, Doku _gleichzeitig_
+        - Ein Mensch steuert mehrere Code-Streams
+        - „Zu aufwendig" → einfach einen Agenten losschicken
+      ],
+    )
+  ]
+
+  #slide[
+    === 🔍 Qualität braucht den Menschen
+
+    #v(0.5em)
+
+    #align(center)[
+      #text(size: 1.1em, style: "italic")[
+        „Die Kosten fürs Erzeugen sinken —\
+        die Kosten für Qualität nicht."
+      ]
+    ]
+
+    #v(1em)
+
+    #toolbox.side-by-side(
+      gutter: 3em,
+      [
+        *Code:*
+
+        #v(0.3em)
+
+        - Korrektheit & Fehlerfreiheit
+        - Tests & Regressionssicherheit
+        - Wartbarkeit & Einfachheit
+        - Sicherheit, Performance
+      ],
+      [
+        *Daten & Analysen:*
+
+        #v(0.3em)
+
+        - Stimmen die Zahlen tatsächlich?
+        - Richtige Formeln, richtige Bezüge?
+        - Plausibilitäts-Checks durchgeführt?
+        - Fehlende Daten / Ausreißer erkannt?
+      ],
+    )
+
+    #v(1em)
+
+    #align(center)[
+      #text(size: 0.95em)[
+        Ob Code, Excel-Chart oder Data-Science-Pipeline:\
+        *Prüfen bleibt Aufgabe des Menschen.*
+      ]
+    ]
+  ]
+
+  // --------------------------------------------------------------------------
+  // Sammle, was du kannst
+  // --------------------------------------------------------------------------
+
+  #slide[
+    === 🗃️ Sammle, was du kannst
+
+    #v(0.1em)
+    #align(center)[#text(size: 0.9em, fill: meko_grey)[„Hoard things you know how to do"]]
+
+    #v(0.8em)
+
+    #toolbox.side-by-side(
+      gutter: 3em,
+      [
+        *Das Prinzip:*
+
+        #v(0.5em)
+
+        - Erfahrung = Sammlung bewiesener Lösungen
+        - Nicht nur _wissen_, sondern _gesehen haben_, dass es funktioniert
+        - Blog-Posts, TIL-Notizen, Repos, Code-Snippets
+
+        #v(1em)
+
+        *Der Schlüssel:*\
+        Mit Agenten musst du einen Trick nur\
+        *ein einziges Mal* herausfinden.
+      ],
+      [
+        *Rekombination:*
+
+        #v(0.5em)
+
+        Zwei bekannte Lösungen → Agent baut eine neue daraus.
+
+        #block(
+          fill: luma(245),
+          inset: 1em,
+          radius: 6pt,
+          width: 100%,
+        )[
+          #text(size: 0.8em)[
+            _Beispiel:_\
+            Tesseract.js (Bild → Text)\
+            + PDF.js (PDF → Bild)\
+            → Browser-OCR für PDFs
+          ]
+        ]
+
+        *Agenten durchsuchen deine Sammlung*\
+        und kombinieren Bausteine automatisch.
+      ],
+    )
+  ]
+
+  // --------------------------------------------------------------------------
+  // Kumulativer Wissensaufbau
+  // --------------------------------------------------------------------------
+
+  #slide[
+    === 🔁 Kumulativer Wissensaufbau
+
+    #v(2em)
+    #align(center)[#text(size: 0.9em, fill: meko_grey)[„Compound Engineering"]]
+
+    #v(1em)
+
+    #align(center)[
+      ```
+      Projekt A  →  Was hat gut funktioniert?
+                                  ↓
+                          Patterns dokumentieren
+                                  ↓
+      Projekt B  →  Agent nutzt die Patterns automatisch
+                                  ↓
+                          Neue Erkenntnisse ergänzen
+                                  ↓
+      Projekt C  →  Agent wird immer besser
+      ```
+    ]
+  ]
+
+  #slide[
+    === 🔁 Kumulativer Wissensaufbau — in der Praxis
+
+    #v(0.5em)
+
+    #toolbox.side-by-side(
+      gutter: 3em,
+      [
+        *Was dokumentieren?*
+
+        #v(0.3em)
+
+        - Was lief gut, was nicht?
+        - Typische Fehler und deren Lösung
+        - Entscheidungen und deren Begründung
+
+        #v(0.5em)
+
+        *Wo ablegen?*
+
+        #v(0.3em)
+
+        - `AGENTS.md` — Projekt-Anweisungen
+        - Skills — wiederverwendbare Prompt-Bausteine
+        - Projekt-Wiki / README — für das Team
+      ],
+      [
+        *Was bringt das?*
+
+        #v(0.3em)
+
+        - Agent macht denselben Fehler nicht zweimal
+        - Neue Teammitglieder (und Agenten) starten auf höherem Niveau
+        - Qualität steigt mit jedem Durchlauf
+
+        #v(0.5em)
+
+        *Beispiel:*
+
+        #block(
+          fill: luma(245),
+          inset: 1em,
+          radius: 6pt,
+          width: 100%,
+        )[
+          #text(size: 0.7em)[
+            _Retro Projekt A:_ „Agent hat immer zu große PRs erstellt."\
+            → `AGENTS.md`: „PRs max. 200 Zeilen"\
+            _Projekt B:_ Agent hält sich daran.
+          ]
+        ]
+      ],
+    )
+  ]
+
+  // --------------------------------------------------------------------------
+  // Bessere Ergebnisse durch KI
+  // --------------------------------------------------------------------------
+
+  #slide[
+    === ✨ KI soll _bessere_ Ergebnisse liefern
+
+    #v(0.5em)
+
+    #align(center)[
+      #text(size: 1.1em, style: "italic")[
+        „Schlechtere Ergebnisse mit Agenten zu liefern ist eine _Entscheidung_.\
+        Wir können uns auch für bessere entscheiden."
+      ]
+    ]
+
+    #v(1.5em)
+
+    #toolbox.side-by-side(
+      gutter: 3em,
+      [
+        *Exploratives Prototyping:*
+
+        #v(0.5em)
+
+        - Hypothesen schnell durch Prototypen prüfen
+        - Simulationen & Lasttests in Minuten aufsetzen
+        - „Senkt die Kosten für Experimente auf fast null"
+      ],
+      [
+        *Daten & Analysen:*
+
+        #v(0.5em)
+
+        - Excel-Auswertungen automatisch erstellen
+        - Diagramme in verschiedenen Varianten testen
+        - Daten bereinigen und aufbereiten lassen
+        - Mehr Zeit zum Nachdenken, weniger zum Formatieren
+      ],
+    )
+
+  ]
+
+  // --------------------------------------------------------------------------
+  // Ideale Code-Aufgaben
+  // --------------------------------------------------------------------------
+
+  #slide[
+    === 🛠️ Ideale Code-Aufgaben für Agenten
+
+    #v(0.5em)
+
+    #toolbox.side-by-side(
+      gutter: 3em,
+      [
+        *Refactoring:*
+
+        #v(0.5em)
+
+        - API-Redesigns über Dutzende Stellen
+        - Benennungs-Inkonsistenzen bereinigen
+        - Doppelte Funktionalität konsolidieren
+        - Große Dateien modularisieren
+
+        #v(1em)
+
+        _Agenten im Hintergrund laufen lassen —\
+        Ergebnis als Pull Request reviewen._
+      ],
+      [
+        *Qualitäts-Hebel:*
+
+        #v(0.5em)
+
+        - Test-Coverage erhöhen
+        - Dokumentation aktualisieren
+        - Typ-Annotationen ergänzen
+        - Dependency-Updates durchführen
+        - Sicherheits-Audits automatisieren
+
+        #v(1em)
+
+        _Aufgaben, die sich „nie lohnen" —\
+        jetzt im Hintergrund erledigt._
+      ],
+    )
+  ]
+
+  // --------------------------------------------------------------------------
+  // Was ist Git?
+  // --------------------------------------------------------------------------
+
+  #slide[
+    === 🔀 Git — Versionskontrolle für Code
+
+    #v(0.3em)
+    #text(size: 0.9em, fill: meko_grey)[Das Fundament moderner Softwareentwicklung]
+
+    #toolbox.side-by-side(
+      gutter: 2.5em,
+      [
+        *Was ist Git?*
+
+        #v(0.3em)
+
+        Ein System, das _jede Änderung_ an Dateien aufzeichnet — wie eine unbegrenzte Undo-History für das gesamte Projekt.
+
+        #v(0.3em)
+
+        - *Commit* — ein Snapshot des aktuellen Stands
+        - *Branch* — ein paralleler Arbeitsstrang
+        - *Merge* — Änderungen zusammenführen
+        - *Pull Request* — Änderungen zur Review vorlegen
+      ],
+      [
+        #set align(horizon)
+        #block(
+          fill: luma(245),
+          inset: 1.2em,
+          radius: 6pt,
+          width: 100%,
+        )[
+          *Warum Git wichtig ist:*
+
+          #v(0.3em)
+
+          #text(size: 0.85em)[
+            - Nichts geht verloren — jeder Stand ist wiederherstellbar
+            - Mehrere Personen können gleichzeitig arbeiten
+            - Änderungen sind nachvollziehbar (wer, wann, warum)
+            - Standard in der gesamten Branche
+          ]
+
+          #v(0.3em)
+
+          → _Sicherheitsnetz_ für jede Codeänderung
+        ]
+      ],
+    )
+  ]
+
+  // --------------------------------------------------------------------------
+  // Git + Agenten
+  // --------------------------------------------------------------------------
+
+  #slide[
+    === 🤖 Git + Agenten
+
+    #v(0.3em)
+    #text(size: 0.9em, fill: meko_grey)[Agenten sprechen fließend Git]
+
+    #v(0.8em)
+
+    #toolbox.side-by-side(
+      gutter: 3em,
+      [
+        *Grundlagen delegieren:*
+
+        #v(0.5em)
+
+        - _„Commit diese Änderungen"_ → aussagekräftige Messages
+        - _„Zeig mir die Änderungen von heute"_ → `git log`
+        - _„Räum dieses Git-Chaos auf"_ → Merge-Konflikte lösen
+
+        #v(0.5em)
+
+        _Agenten arbeiten immer auf einem Branch —\
+        `main` bleibt geschützt._
+      ],
+      [
+        #set align(horizon)
+        #block(
+          fill: luma(245),
+          inset: 1.2em,
+          radius: 6pt,
+          width: 100%,
+        )[
+          *Commit-History als erzählte Geschichte*
+
+          #v(0.3em)
+
+          #text(size: 0.85em)[
+            Agenten helfen beim Kuratieren:
+
+            - Commits zusammenfassen oder aufteilen
+            - Messages verbessern
+            - Dateien aus Commits entfernen
+            - Code in neue Repos extrahieren
+          ]
+
+          #v(0.3em)
+
+          → _Strategie_ statt Syntax
+        ]
+      ],
+    )
+  ]
+
+  // --------------------------------------------------------------------------
+  // Anti-Patterns
+  // --------------------------------------------------------------------------
+
+  #slide[
+    === ⛔ Anti-Pattern: Ungeprüfter Code im PR
+
+    #v(0.5em)
+
+    #align(center)[
+      #text(size: 1.05em, style: "italic")[
+        „Stelle keine Pull Requests mit Code,\
+        den du nicht selbst reviewed hast."
+      ]
+    ]
+
+    #v(1em)
+
+    #toolbox.side-by-side(
+      gutter: 3em,
+      [
+        *Das Problem:*
+
+        #v(0.5em)
+
+        - Hunderte Zeilen Agent-Code → „Accept All" → PR
+        - Reviewer hätten den Agent selbst prompten können
+        - Verantwortung wird auf andere abgewälzt
+      ],
+      [
+        *Gute Agent-PRs haben:*
+
+        #v(0.5em)
+
+        + *Funktionalität* — Code funktioniert nachweislich
+        + *Scope* — Klein genug für effizientes Review
+        + *Kontext* — Ziel, Issue-Links, Spezifikation
+        + *Eigene Prüfung* — Test-Notizen, Screenshots
+      ],
+    )
+  ]
+
+  // --------------------------------------------------------------------------
+  // Subagenten
+  // --------------------------------------------------------------------------
+
+  #slide[
+    === 🔄 Subagenten: Parallele Arbeit
+
+    #v(0.5em)
+
+    #toolbox.side-by-side(
+      gutter: 3em,
+      [
+        *Das Problem:*\
+        Kontext-Fenster ist begrenzt\
+        (ca. 200k Tokens) → Agent vergisst
+
+        #v(0.3em)
+
+        *Die Lösung:*\
+        Agent startet frische Kopien von sich selbst —\
+        jeweils mit eigenem Kontext-Fenster.
+
+        #v(0.3em)
+
+        ```
+        Haupt-Agent
+          ├→ Subagent A  (Codebase erkunden)
+          ├→ Subagent B  (Tests schreiben)
+          └→ Subagent C  (Doku aktualisieren)
+              ↓ parallel ↓
+          Ergebnisse zurück an Haupt-Agent
+        ```
+      ],
+      [
+        *Spezialisierung:*
+
+        - 🔍 *Explorer* — Codebase analysieren
+        - 🧪 *Testläufer* — Fehler isolieren
+        - 📝 *Reviewer* — Bugs & Design-Schwächen finden
+        - 🐛 *Debugger* — Ursachen untersuchen
+
+        #v(0.3em)
+
+        *Performance:*
+        - Parallel auf günstigeren Modellen
+        - Haupt-Agent behält wertvollen Kontext
+      ],
+    )
+  ]
+
+  // --------------------------------------------------------------------------
+  // Red/Green TDD
+  // --------------------------------------------------------------------------
+
+  #slide[
+    === 🧪 Red/Green TDD mit Agenten
+
+    #v(0.3em)
+    #align(center)[#text(size: 0.9em, fill: meko_grey)[„Angenehm kurz und effektiv" — Willison]]
+
+    #v(0.8em)
+
+    #toolbox.side-by-side(
+      gutter: 3em,
+      [
+        #grid(
+          columns: (auto, 1fr),
+          gutter: 0.8em,
+          row-gutter: 1.2em,
+          align: horizon,
+          text(size: 1.4em, fill: red)[⬤],
+          [*Red:* Tests schreiben → bestätigen, dass sie _fehlschlagen_],
+          text(size: 1.4em, fill: rgb(76, 175, 80))[⬤],
+          [*Green:* Code implementieren → Tests bestehen],
+          text(size: 1.4em, fill: rgb(33, 150, 243))[⬤],
+          [*Refactor:* Aufräumen, vereinfachen],
+        )
+
+        #v(1em)
+
+        #text(size: 0.9em)[
+          *Prompt:*\
+          _„Baue eine Python-Funktion die X tut.\
+          Nutze Red/Green TDD."_
+        ]
+      ],
+      [
+        #set align(horizon)
+
+        *Warum besonders wichtig mit Agenten:*
+
+        #v(0.3em)
+
+        - Verhindert nicht-funktionierenden Code
+        - Schützt vor unnötigen Features
+        - Baut robuste Test-Suite auf
+        - Regressionssicherheit wächst automatisch
+
+        #v(1em)
+
+        *Achtung:*\
+        Red-Phase nie überspringen!
+      ],
+    )
+  ]
+
+  // --------------------------------------------------------------------------
+  // Erst die Tests laufen lassen
+  // --------------------------------------------------------------------------
+
+  #slide[
+    === 🏃 „Erst die Tests laufen lassen"
+
+    #v(0.5em)
+
+    #align(center)[
+      #text(size: 1.1em, style: "italic")[
+        „Automatisierte Tests sind nicht mehr optional\
+        wenn man mit Coding-Agenten arbeitet."
+      ]
+    ]
+
+    #v(1em)
+
+    #toolbox.side-by-side(
+      gutter: 3em,
+      [
+        *Die Vier-Wort-Regel:*
+
+        #v(0.5em)
+
+        #align(center)[
+          #block(
+            fill: luma(245),
+            inset: 1em,
+            radius: 6pt,
+          )[
+            #text(size: 1.1em, weight: "bold")[
+              „First run the tests"
+            ]
+          ]
+        ]
+
+        #v(0.8em)
+
+        Jede Session mit dem Agenten so beginnen.\
+        Alternativ: _„Run 'just test'"_
+      ],
+      [
+        *Drei Effekte:*
+
+        #v(0.5em)
+
+        + *Discovery* — Agent findet & versteht die Test-Suite
+        + *Kontext* — Test-Output zeigt Projektumfang & Komplexität
+        + *Mindset* — Agent entwickelt Test-fokussierte Arbeitsweise
+      ],
+    )
+  ]
+
+  // --------------------------------------------------------------------------
+  // Manuelles Testen mit Agenten
+  // --------------------------------------------------------------------------
+
+  #slide[
+    === 🖥️ Manuelles Testen mit Agenten
+
+    #v(0.3em)
+
+    #align(center)[
+      #text(size: 0.95em, style: "italic")[
+        „Gehe nie davon aus, dass LLM-generierter Code funktioniert,\
+        bis er _ausgeführt_ wurde."
+      ]
+    ]
+
+    #v(0.8em)
+
+    #toolbox.side-by-side(
+      gutter: 3em,
+      [
+        *Wie Agenten manuell testen:*
+
+        #v(0.5em)
+
+        - Python: `python -c "..."` direkt im Terminal
+        - Web-APIs: Dev-Server starten + `curl` erkunden
+        - Browser: Playwright, agent-browser
+      ],
+      [
+        *Der Kreislauf:*
+
+        #v(0.5em)
+
+        ```
+        Agent generiert Code
+              ↓
+        Agent testet manuell
+              ↓
+        Problem gefunden?
+          → Fix mit Red/Green TDD
+          → Test bleibt als Regression
+              ↓
+        Qualität steigt dauerhaft
+        ```
+      ],
+    )
+  ]
+
+  // --------------------------------------------------------------------------
+  // Prüfen ist Pflicht
+  // --------------------------------------------------------------------------
+
+  #slide[
+    === ⚠️ Prüfen ist Pflicht — nicht nur beim Code
+
+    #v(0.5em)
+
+    #align(center)[
+      #text(size: 1.05em, style: "italic")[
+        „Vertrauen ist gut — Kontrolle ist bei KI-Ergebnissen unverzichtbar."
+      ]
+    ]
+
+    #v(1em)
+
+    #toolbox.side-by-side(
+      gutter: 3em,
+      [
+        *Daten & Analysen:*
+
+        #v(0.5em)
+
+        - Stimmen die Zahlen in der Excel-Tabelle?
+        - Sind Formeln und Bezüge korrekt?
+        - Fehlen Datensätze oder gibt es Ausreißer?
+        - Wurde die richtige Spalte aggregiert?
+      ],
+      [
+        *Texte & Dokumente:*
+
+        #v(0.5em)
+
+        - Fakten geprüft? (LLMs halluzinieren!)
+        - Quellen vorhanden und korrekt?
+        - Fachbegriffe richtig verwendet?
+      ],
+    )
+  ]
+
+  #slide[
+    === ⚠️ Prüfen ist Pflicht — nicht nur beim Code
+
+    #v(0.5em)
+
+    #toolbox.side-by-side(
+      gutter: 3em,
+      [
+        *Präsentationen & Berichte:*
+
+        #v(0.5em)
+
+        - Passen Diagramm und Aussage zusammen?
+        - Sind Einheiten und Achsenbeschriftungen richtig?
+        - Stimmt die Schlussfolgerung mit den Daten überein?
+      ],
+      [
+        *Grundregel:*
+
+        #v(0.5em)
+
+        #block(
+          fill: luma(245),
+          inset: 1em,
+          radius: 6pt,
+          width: 100%,
+        )[
+          Je wichtiger die Entscheidung,\
+          desto gründlicher die Prüfung.\
+          \
+          *KI beschleunigt das Erstellen —\
+          nicht das Prüfen.*
+        ]
+      ],
+    )
+  ]
+
+  // --------------------------------------------------------------------------
+  // Code verstehen
+  // --------------------------------------------------------------------------
+
+  #slide[
+    === 📖 Code verstehen: Walkthroughs & Visualisierungen
+
+    #v(0.5em)
+
+    #toolbox.side-by-side(
+      gutter: 3em,
+      [
+        *Linear Walkthroughs:*
+
+        #v(0.5em)
+
+        Agent erstellt strukturierte Erklärungen\
+        des gesamten Codes — Datei für Datei.
+
+        #v(0.5em)
+
+        #block(
+          fill: luma(245),
+          inset: 1em,
+          radius: 6pt,
+          width: 100%,
+        )[
+          #text(size: 0.9em)[
+            _„Lies den Quellcode und erstelle\
+            einen detaillierten Walkthrough.\
+            Zeige Code-Snippets mit grep/cat."_
+          ]
+        ]
+
+        #v(0.8em)
+
+        → Auch Vibe-Coding-Projekte werden\
+        nachträglich verständlich.
+      ],
+      [
+        *Interaktive Erklärungen:*
+
+        #v(0.5em)
+
+        Agent baut animierte HTML-Visualisierungen,\
+        die Algorithmen Schritt für Schritt zeigen.
+
+        #v(0.5em)
+
+        - Platzierungs-Algorithmen animiert
+        - Kollisions-Erkennung sichtbar gemacht
+        - Abstrakte Konzepte → interaktiv erforschbar
+      ],
+    )
+  ]
+
+  // --------------------------------------------------------------------------
+  // Cognitive Debt
+  // --------------------------------------------------------------------------
+
+  #slide[
+    === 🧠 Cognitive Debt vermeiden
+
+    #v(0.5em)
+
+    #align(center)[
+      #text(size: 1.05em, style: "italic")[
+        „Verstehen, _was_ der Agent gebaut hat —\
+        nicht nur, _dass_ es funktioniert."
+      ]
+    ]
+
+    #v(1em)
+
+    #toolbox.side-by-side(
+      gutter: 3em,
+      [
+        *Das Problem:*
+
+        #v(0.5em)
+
+        - Agent erzeugt Code schneller als man lesen kann
+        - Projekt wächst, aber das Verständnis nicht
+        - Kleine Änderungen werden riskant, weil niemand\
+          die Zusammenhänge mehr überblickt
+      ],
+      [
+        *Die Lösung:*
+
+        #block(
+          fill: luma(245),
+          inset: 1em,
+          radius: 6pt,
+          width: 100%,
+        )[
+          *KI kann nicht nur bauen —\
+          sie kann auch erklären.\
+          Beides nutzen!*
+        ]
+        #v(0.5em)
+
+        - Architektur-Entscheidungen dokumentieren
+        - Visualisierungen anfordern
+      ],
+    )
+  ]
+
+  // --------------------------------------------------------------------------
+  // Zusammenfassung Patterns
+  // --------------------------------------------------------------------------
+
+  #content-slide([Willisons Patterns — Zusammenfassung])[
+    #set text(size: 15pt)
+
+    #grid(
+      columns: (1fr, 1fr),
+      gutter: 1.5em,
+      [
+        *Prinzipien*
+
+        #v(0.4em)
+
+        + Code ist billig — _guter_ Code nicht
+        + Sammle bewiesene Lösungen
+        + Nutze KI für _besseren_ Code
+        + Kein ungeprüfter Code in PRs
+
+        #v(1em)
+
+        *Arbeiten mit Agenten*
+
+        #v(0.4em)
+
+        + Git als Sicherheitsnetz nutzen
+        + Subagenten für parallele Arbeit
+        + Kontext-Fenster bewusst managen
+      ],
+      [
+        *Testing & QA*
+
+        #v(0.4em)
+
+        + Red/Green TDD — immer
+        + „Erst die Tests laufen lassen"
+        + Manuelles Testen nicht vergessen
+
+        #v(1em)
+
+        *Code verstehen*
+
+        #v(0.4em)
+
+        + Lineare Walkthroughs generieren
+        + Interaktive Visualisierungen bauen
+        + Cognitive Debt vermeiden
+      ],
+    )
+
+    #v(1em)
+
+    #align(center)[
+      #text(size: 0.85em, fill: meko_grey)[
+        Quelle: #link("https://simonwillison.net/guides/agentic-engineering-patterns/")[simonwillison.net/guides/agentic-engineering-patterns]
+      ]
+    ]
+  ]
+
+  // ============================================================================
   // Appendix
   // ============================================================================
 
   #section-slide([Appendix])[]
-
-  #slide[
-    === Wie meine privaten Repos seit Claude Code angewachsen sind
-    #align(center + horizon)[#image("assets/more_private_repos.png", height: 85%)]
-  ]
 
   #slide[
     === Claude Code: GitHub Commits
