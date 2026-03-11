@@ -14,7 +14,98 @@
     authors: [
       #text(style: "italic")[Christian Budde] #link("https://github.com/MeKo-Christian")[\@MeKo-Christian] \
     ],
+    title-image: image("assets/cyborgo.png"),
   )
+
+  // ============================================================================
+  // Gartner Quote
+  // ============================================================================
+
+  #content-slide([💡 KI-Transformation])[
+    #align(center + horizon)[
+      #block(width: 85%)[
+        #set text(size: 1.35em, style: "italic")
+        „Unternehmen, die beim Einführen von KI ihre Prozesse konsequent neu gestalten, übertreffen ihre Umsatzziele doppelt so häufig wie jene, die einfach Tools einführen und auf Wirkung hoffen."
+
+        #v(1.2em)
+        #set text(size: 0.85em, style: "normal", weight: "bold")
+        #link("https://www.gartner.com/en/newsroom/press-releases/2025-10-27-gartner-says-chros-must-become-an-enterprise-leader-of-how-work-should-change-in-the-ai-era")[Gartner, 2025]
+      ]
+    ]
+  ]
+
+  // ============================================================================
+  // Nutzung von AI Tools
+  // ============================================================================
+
+  #slide[
+    === 💡 KI-Transformation: Nutzung von AI Tools
+
+    #v(0.5em)
+
+    #toolbox.side-by-side(
+      gutter: 2em,
+      [
+        #set text(size: 0.95em)
+
+        #v(3em)
+
+        - 16% nutzen freie Tools
+        - 0,3% nutzen Bezahldienste
+        - 0,04% nutzen Code-Agenten
+
+        #v(1.5em)
+        #text(size: 0.8em)[Quelle: #link("https://www.linkedin.com/posts/activity-7298692065940758528")[LinkedIn Post]]
+      ],
+      [
+        #set align(center)
+        #set text(size: 0.55em)
+        *Jeder Punkt entspricht \~3,2 Millionen Menschen*\
+        #text(size: 0.8em, fill: luma(120))[2.500 Punkte = 8,1 Milliarden Menschen. Farbe = fortschrittlichste KI-Interaktion, Feb 2026.]
+
+        #v(0.3em)
+
+        // 2500 Punkte: 84% grau (2092), 16% grün (400), 0,3% orange (7), 0,04% rot (1)
+        #let dot-grey = luma(200)
+        #let dot-green = rgb(76, 175, 80)
+        #let dot-orange = rgb(255, 152, 0)
+        #let dot-red = rgb(244, 67, 54)
+
+        #let cols = 50
+        #let rows = 50
+        #let total = cols * rows  // 2500
+        #let n-red = 1
+        #let n-orange = 7
+        #let n-green = 400
+        #let n-grey = total - n-green - n-orange - n-red  // 2092
+
+        #grid(
+          columns: (4pt,) * cols,
+          rows: (4pt,) * rows,
+          gutter: 1pt,
+          ..range(total).map(i => {
+            let color = if i < n-grey { dot-grey }
+              else if i < n-grey + n-green { dot-green }
+              else if i < n-grey + n-green + n-orange { dot-orange }
+              else { dot-red }
+            rect(width: 100%, height: 100%, fill: color)
+          })
+        )
+
+        #v(0.3em)
+        #set text(size: 0.7em)
+        #grid(
+          columns: (auto, auto),
+          gutter: 0.8em,
+          row-gutter: 0.3em,
+          [#box(circle(radius: 4pt, fill: luma(200))) Nie AI genutzt · \~6,8 Mrd. (84%)],
+          [#box(circle(radius: 4pt, fill: rgb(76, 175, 80))) Kostenlose Chatbot-Nutzer · \~1,3 Mrd. (16%)],
+          [#box(circle(radius: 4pt, fill: rgb(255, 152, 0))) Bezahlt \$20/Monat für KI · \~15–25 Mio. (\~0,3%)],
+          [#box(circle(radius: 4pt, fill: rgb(244, 67, 54))) Nutzt Coding Scaffold · \~2–5 Mio. (\~0,04%)],
+        )
+      ],
+    )
+  ]
 
   // ============================================================================
   // 0. Prompt vs. Agent
@@ -66,19 +157,7 @@
     #toolbox.side-by-side(
       gutter: 3em,
       [
-        ```
-        Mensch → Ziel(prompt)
-                   ↓
-              Agent plant
-                   ↓
-            Tool aufrufen  ← Shell / Dateien
-                   ↓            / Web / Tests
-            Ergebnis lesen
-                   ↓
-            weiter iterieren
-                   ↓
-              Ziel erreicht?
-        ```
+        #image("assets/workflow.png", height: 74%)
       ],
       [
         #set align(horizon)
@@ -90,6 +169,134 @@
 
         #v(2em)
         → *Kontext Engineering* = Kunst, den Agenten mit dem richtigen Kontext zu versorgen
+      ],
+    )
+  ]
+
+// ============================================================================
+  // Skills
+  // ============================================================================
+
+  #slide[
+    === Skills
+
+    #v(0.3em)
+
+    #grid(
+      columns: (auto, 1fr),
+      gutter: 2em,
+      align: horizon,
+      image("assets/kungfu.png", height: 88%),
+      [
+        *Skills* — Wissen on demand
+
+        #v(1em)
+
+        Wie Neo, der in Sekunden Kung-Fu lernt:\
+        Agenten bekommen Fähigkeiten _injiziert_ —\
+        nicht durch Training, sondern durch Kontext.
+      ],
+    )
+  ]
+
+  #content-slide([Was sind Skills?])[
+    #toolbox.side-by-side(
+      gutter: 3em,
+      [
+        *Was sind Skills?*
+
+        #v(0.8em)
+
+        - Wiederverwendbare Prompt-Bausteine / Anweisungen
+        - Domänenwissen, Patterns, Coding-Standards
+        - Tool-Nutzungsanleitungen für den Agenten
+        - In Claude Code: `/skill`-Dateien im Projekt
+      ],
+      [
+        *Warum wichtig?*
+
+        #v(0.8em)
+
+        - Agent kennt _deine_ Konventionen, nicht nur allgemeines Wissen
+        - Qualität steigt ohne den Agenten neu zu trainieren
+        - Skills = das neue Institutional Knowledge
+      ],
+    )
+  ]
+
+  // ============================================================================
+  // MCP
+  // ============================================================================
+
+  #content-slide([Model Context Protocol])[
+    #toolbox.side-by-side(
+      gutter: 2em,
+      [
+        *Was ist MCP?*
+
+        #v(0.6em)
+
+        Ein offenes Protokoll, das Agenten standardisiert\
+        mit externen Tools, Daten und Diensten verbindet.
+
+        #v(0.3em)
+
+        #text(style: "italic")[
+          „USB-C für KI-Agenten"
+        ]
+
+        #v(0.5em)
+
+        *Das Problem davor:*
+        - Jede App × jedes Modell = eigene Integration
+        - N×M Custom-Connectoren, kaum wiederverwendbar
+        - Anthropic, Nov 2024
+
+        #v(0.5em)
+
+        *Heute:*\
+        OpenAI, Google, alle großen Anbieter unterstützen MCP.\
+        Seit Dez 2025 unter der Linux Foundation (AAIF).
+      ],
+      [
+        *Die drei Kern-Primitive:*
+
+        #v(0.6em)
+
+        🔧 *Tools* — Aktionen, die der Agent ausführen kann\
+        #text(
+          size: 0.85em,
+          fill: meko_grey,
+        )[z.B. Datei lesen, API aufrufen, DB abfragen]
+
+        #v(0.8em)
+
+        📄 *Resources* — Daten, die der Agent lesen kann\
+        #text(
+          size: 0.85em,
+          fill: meko_grey,
+        )[z.B. Dateisystem, Dokumentation, Codebase]
+
+        #v(0.8em)
+
+        💬 *Prompts* — Wiederverwendbare Prompt-Templates\
+        #text(
+          size: 0.85em,
+          fill: meko_grey,
+        )[z.B. vordefinierte Workflows, Kontext-Snippets]
+
+        #v(1.2em)
+
+        *Architektur:*
+
+        #v(0.4em)
+
+        ```
+        Agent (MCP Client)
+          ↔ MCP Server A  (GitHub, Jira, …)
+          ↔ MCP Server B  (Dateisystem, DB, …)
+          ↔ MCP Server C  (eigene Tools, …)
+        ```
       ],
     )
   ]
@@ -225,151 +432,6 @@
   ]
 
   // ============================================================================
-  // Skills
-  // ============================================================================
-
-  #slide[
-    === Skills
-
-    #v(0.3em)
-
-    #grid(
-      columns: (auto, 1fr),
-      gutter: 2em,
-      align: horizon,
-      image("assets/kungfu.png", height: 88%),
-      [
-        *Skills* — Wissen on demand
-
-        #v(1em)
-
-        Wie Neo, der in Sekunden Kung-Fu lernt:\
-        Agenten bekommen Fähigkeiten _injiziert_ —\
-        nicht durch Training, sondern durch Kontext.
-      ],
-    )
-  ]
-
-  #content-slide([Was sind Skills?])[
-    #toolbox.side-by-side(
-      gutter: 3em,
-      [
-        *Was sind Skills?*
-
-        #v(0.8em)
-
-        - Wiederverwendbare Prompt-Bausteine / Anweisungen
-        - Domänenwissen, Patterns, Coding-Standards
-        - Tool-Nutzungsanleitungen für den Agenten
-        - In Claude Code: `/skill`-Dateien im Projekt
-      ],
-      [
-        *Warum wichtig?*
-
-        #v(0.8em)
-
-        - Agent kennt _deine_ Konventionen, nicht nur allgemeines Wissen
-        - Qualität steigt ohne den Agenten neu zu trainieren
-        - Skills = das neue Institutional Knowledge
-      ],
-    )
-  ]
-
-  // ============================================================================
-  // MCP
-  // ============================================================================
-
-  #content-slide([Model Context Protocol])[
-    #toolbox.side-by-side(
-      gutter: 2em,
-      [
-        *Was ist MCP?*
-
-        #v(0.6em)
-
-        Ein offenes Protokoll, das Agenten standardisiert\
-        mit externen Tools, Daten und Diensten verbindet.
-
-        #v(0.3em)
-
-        #text(style: "italic")[
-          „USB-C für KI-Agenten"
-        ]
-
-        #v(0.5em)
-
-        *Das Problem davor:*
-        - Jede App × jedes Modell = eigene Integration
-        - N×M Custom-Connectoren, kaum wiederverwendbar
-        - Anthropic, Nov 2024
-
-        #v(0.5em)
-
-        *Heute:*\
-        OpenAI, Google, alle großen Anbieter unterstützen MCP.\
-        Seit Dez 2025 unter der Linux Foundation (AAIF).
-      ],
-      [
-        *Die drei Kern-Primitive:*
-
-        #v(0.6em)
-
-        🔧 *Tools* — Aktionen, die der Agent ausführen kann\
-        #text(
-          size: 0.85em,
-          fill: meko_grey,
-        )[z.B. Datei lesen, API aufrufen, DB abfragen]
-
-        #v(0.8em)
-
-        📄 *Resources* — Daten, die der Agent lesen kann\
-        #text(
-          size: 0.85em,
-          fill: meko_grey,
-        )[z.B. Dateisystem, Dokumentation, Codebase]
-
-        #v(0.8em)
-
-        💬 *Prompts* — Wiederverwendbare Prompt-Templates\
-        #text(
-          size: 0.85em,
-          fill: meko_grey,
-        )[z.B. vordefinierte Workflows, Kontext-Snippets]
-
-        #v(1.2em)
-
-        *Architektur:*
-
-        #v(0.4em)
-
-        ```
-        Agent (MCP Client)
-          ↔ MCP Server A  (GitHub, Jira, …)
-          ↔ MCP Server B  (Dateisystem, DB, …)
-          ↔ MCP Server C  (eigene Tools, …)
-        ```
-      ],
-    )
-  ]
-
-  // ============================================================================
-  // Gartner Quote
-  // ============================================================================
-
-  #content-slide([💡 KI-Transformation])[
-    #align(center + horizon)[
-      #block(width: 85%)[
-        #set text(size: 1.35em, style: "italic")
-        „Unternehmen, die beim Einführen von KI ihre Prozesse konsequent neu gestalten, übertreffen ihre Umsatzziele doppelt so häufig wie jene, die einfach Tools einführen und auf Wirkung hoffen."
-
-        #v(1.2em)
-        #set text(size: 0.85em, style: "normal", weight: "bold")
-        #link("https://www.gartner.com/en/newsroom/press-releases/2025-10-27-gartner-says-chros-must-become-an-enterprise-leader-of-how-work-should-change-in-the-ai-era")[Gartner, 2025]
-      ]
-    ]
-  ]
-
-  // ============================================================================
   // Appendix
   // ============================================================================
 
@@ -436,7 +498,27 @@
   // (alle Dateien haben identischen Timestamp — Reihenfolge nach Modell-Release)
 
   #slide[
-    === o1 Pro (High)
+    === cerebras-llama3.1-70b (2024)
+    #align(center + horizon)[#image("assets/cerebras-llama3.1-70b.svg", height: 85%)]
+  ]
+
+  #slide[
+    === claude-3-5-sonnet (2024)
+    #align(center + horizon)[#image("assets/claude-3-5-sonnet-20240620.svg", height: 85%)]
+  ]
+
+  #slide[
+    === gemini-1.5-pro (2024)
+    #align(center + horizon)[#image("assets/gemini-1.5-pro-002.svg", height: 85%)]
+  ]
+
+  #slide[
+    === GPT-4o (2024 - "thinking")
+    #align(center + horizon)[#image("assets/gpt-4o.svg", height: 85%)]
+  ]
+
+  #slide[
+    === o1 Pro (High - "thinking")
     #align(center + horizon)[#image(
       "assets/o1-pro-high-pelican.png",
       height: 85%,
@@ -465,7 +547,7 @@
   ]
 
   #slide[
-    === GPT-4.1
+    === GPT-4.1 (1M Kontext-Tokens)
     #align(center + horizon)[#image("assets/gpt-4.1-pelican.jpg", height: 85%)]
   ]
 
@@ -491,7 +573,7 @@
   ]
 
   #slide[
-    === Kimi K2
+    === Kimi K2 (Open Source)
     #align(center + horizon)[#image("assets/kimi-k2-pelican.png", height: 85%)]
   ]
 
@@ -527,6 +609,11 @@
       "assets/gpt-5.1-high-pelican.png",
       height: 85%,
     )]
+  ]
+
+  #slide[
+    === Qwen 3.5-397B
+    #align(center + horizon)[#image("assets/qwen3.5-397b.png", height: 85%)]
   ]
 
   #slide[
