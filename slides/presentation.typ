@@ -1621,8 +1621,7 @@
 
         - Python: `python -c "..."` direkt im Terminal
         - Web-APIs: Dev-Server starten + `curl` erkunden
-        - Andere Sprachen: Demo-Dateien in `/tmp`
-        - Browser: Playwright, agent-browser (Vercel)
+        - Browser: Playwright, agent-browser
       ],
       [
         *Der Kreislauf:*
@@ -1672,9 +1671,8 @@
         - Sind Formeln und Bezüge korrekt?
         - Fehlen Datensätze oder gibt es Ausreißer?
         - Wurde die richtige Spalte aggregiert?
-
-        #v(0.8em)
-
+      ],
+      [
         *Texte & Dokumente:*
 
         #v(0.5em)
@@ -1683,6 +1681,16 @@
         - Quellen vorhanden und korrekt?
         - Fachbegriffe richtig verwendet?
       ],
+    )
+  ]
+
+  #slide[
+    === ⚠️ Prüfen ist Pflicht — nicht nur beim Code
+
+    #v(0.5em)
+
+    #toolbox.side-by-side(
+      gutter: 3em,
       [
         *Präsentationen & Berichte:*
 
@@ -1691,9 +1699,8 @@
         - Passen Diagramm und Aussage zusammen?
         - Sind Einheiten und Achsenbeschriftungen richtig?
         - Stimmt die Schlussfolgerung mit den Daten überein?
-
-        #v(0.8em)
-
+      ],
+      [
         *Grundregel:*
 
         #v(0.5em)
@@ -1766,12 +1773,47 @@
         - Platzierungs-Algorithmen animiert
         - Kollisions-Erkennung sichtbar gemacht
         - Abstrakte Konzepte → interaktiv erforschbar
+      ],
+    )
+  ]
 
-        #v(1em)
+  // --------------------------------------------------------------------------
+  // Cognitive Debt
+  // --------------------------------------------------------------------------
 
-        *Gegen „Cognitive Debt":*\
-        Verstehen, was der Agent gebaut hat —\
-        nicht nur dass es funktioniert.
+  #slide[
+    === 🧠 Cognitive Debt vermeiden
+
+    #v(0.5em)
+
+    #align(center)[
+      #text(size: 1.05em, style: "italic")[
+        „Verstehen, _was_ der Agent gebaut hat —\
+        nicht nur, _dass_ es funktioniert."
+      ]
+    ]
+
+    #v(1em)
+
+    #toolbox.side-by-side(
+      gutter: 3em,
+      [
+        *Das Problem:*
+
+        #v(0.5em)
+
+        - Agent erzeugt Code schneller als man lesen kann
+        - Projekt wächst, aber das Verständnis nicht
+        - Kleine Änderungen werden riskant, weil niemand\
+          die Zusammenhänge mehr überblickt
+      ],
+      [
+        *Die Lösung:*
+
+        #v(0.5em)
+
+        - Architektur-Entscheidungen dokumentieren
+        - Visualisierungen anfordern
       ],
     )
   ]
