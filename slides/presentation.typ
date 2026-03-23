@@ -10,11 +10,10 @@
 
   #title-slide(
     title: [Agentic Engineering],
-    extra: [Von einfachen Anfragen zu agentischem Arbeiten],
+    subtitle: [Von einfachen Anfragen zu agentischem Arbeiten],
     authors: [
       #text(style: "italic")[Christian Budde] #link("https://github.com/MeKo-Christian")[\@MeKo-Christian] \
     ],
-    title-image: image("assets/cyborgo.png"),
   )
 
   // ============================================================================
@@ -788,9 +787,11 @@
     )
   ]
 
-  // --------------------------------------------------------------------------
-  // Fallback: Web-Lösung
-  // --------------------------------------------------------------------------
+  // ============================================================================
+  // Workshop-Image
+  // ============================================================================
+
+  #section-slide([Workshop-Umgebung im Browser])[]
 
   #slide[
     === 🌐 Workshop-Umgebung im Browser
@@ -844,7 +845,7 @@
       gutter: 2em,
       [
         #set align(center)
-        #image("assets/workshop-desktop-select.png", height: 50%)
+        #image("assets/workshop-desktop-select.png", height: 51%)
         #v(0.5em)
         #text(size: 0.85em)[Zum Starten des Desktops bitte diesen Button drücken.]
       ],
@@ -1413,6 +1414,118 @@
   ]
 
   // --------------------------------------------------------------------------
+  // Was ist Git?
+  // --------------------------------------------------------------------------
+
+  #slide[
+    === 🔀 Git — Versionskontrolle für Code
+
+    #v(0.3em)
+    #text(size: 0.9em, fill: meko_grey)[Das Fundament moderner Softwareentwicklung]
+
+    #v(0.5em)
+
+    #toolbox.side-by-side(
+      gutter: 2.5em,
+      [
+        *Was ist Git?*
+
+        #v(0.3em)
+
+        Ein System, das _jede Änderung_ an Dateien aufzeichnet — wie eine unbegrenzte Undo-History für das gesamte Projekt.
+
+        #v(0.3em)
+
+        - *Commit* — ein Snapshot des aktuellen Stands
+        - *Branch* — ein paralleler Arbeitsstrang
+        - *Merge* — Änderungen zusammenführen
+        - *Pull Request* — Änderungen zur Review vorlegen
+      ],
+      [
+        #set align(horizon)
+        #block(
+          fill: luma(245),
+          inset: 1.2em,
+          radius: 6pt,
+          width: 100%,
+        )[
+          *Warum Git wichtig ist:*
+
+          #v(0.3em)
+
+          #text(size: 0.85em)[
+            - Nichts geht verloren — jeder Stand ist wiederherstellbar
+            - Mehrere Personen können gleichzeitig arbeiten
+            - Änderungen sind nachvollziehbar (wer, wann, warum)
+            - Standard in der gesamten Branche
+          ]
+
+          #v(0.3em)
+
+          → _Sicherheitsnetz_ für jede Codeänderung
+        ]
+      ],
+    )
+  ]
+
+  // --------------------------------------------------------------------------
+  // Git + Agenten
+  // --------------------------------------------------------------------------
+
+  #slide[
+    === 🤖 Git + Agenten
+
+    #v(0.3em)
+    #text(size: 0.9em, fill: meko_grey)[Agenten sprechen fließend Git]
+
+    #v(0.8em)
+
+    #toolbox.side-by-side(
+      gutter: 3em,
+      [
+        *Grundlagen delegieren:*
+
+        #v(0.5em)
+
+        - _„Commit diese Änderungen"_ → aussagekräftige Messages
+        - _„Zeig mir die Änderungen von heute"_ → `git log`
+        - _„Räum dieses Git-Chaos auf"_ → Merge-Konflikte lösen
+
+        #v(0.5em)
+
+        _Agenten arbeiten immer auf einem Branch —\
+        `main` bleibt geschützt._
+      ],
+      [
+        #set align(horizon)
+        #block(
+          fill: luma(245),
+          inset: 1.2em,
+          radius: 6pt,
+          width: 100%,
+        )[
+          *Commit-History als erzählte Geschichte*
+
+          #v(0.3em)
+
+          #text(size: 0.85em)[
+            Agenten helfen beim Kuratieren:
+
+            - Commits zusammenfassen oder aufteilen
+            - Messages verbessern
+            - Dateien aus Commits entfernen
+            - Code in neue Repos extrahieren
+          ]
+
+          #v(0.3em)
+
+          → _Strategie_ statt Syntax
+        ]
+      ],
+    )
+  ]
+
+  // --------------------------------------------------------------------------
   // Anti-Patterns
   // --------------------------------------------------------------------------
 
@@ -1450,58 +1563,6 @@
         + *Scope* — Klein genug für effizientes Review
         + *Kontext* — Ziel, Issue-Links, Spezifikation
         + *Eigene Prüfung* — Test-Notizen, Screenshots
-      ],
-    )
-  ]
-
-  // --------------------------------------------------------------------------
-  // Git + Agenten
-  // --------------------------------------------------------------------------
-
-  #slide[
-    === 🔀 Git als Sicherheitsnetz
-
-    #v(0.3em)
-    #text(size: 0.9em, fill: meko_grey)[Agenten sprechen fließend Git]
-
-    #v(0.8em)
-
-    #toolbox.side-by-side(
-      gutter: 3em,
-      [
-        *Grundlagen delegieren:*
-
-        #v(0.5em)
-
-        - _„Commit diese Änderungen"_ → aussagekräftige Messages
-        - _„Zeig mir die Änderungen von heute"_ → `git log`
-        - _„Räum dieses Git-Chaos auf"_ → Merge-Konflikte lösen
-      ],
-      [
-        #set align(horizon)
-        #block(
-          fill: luma(245),
-          inset: 1.2em,
-          radius: 6pt,
-          width: 100%,
-        )[
-          *Commit-History als erzählte Geschichte*
-
-          #v(0.3em)
-
-          #text(size: 0.85em)[
-            Agenten helfen beim Kuratieren:
-
-            - Commits zusammenfassen oder aufteilen
-            - Messages verbessern
-            - Dateien aus Commits entfernen
-            - Code in neue Repos extrahieren
-          ]
-
-          #v(0.3em)
-
-          → _Strategie_ statt Syntax
-        ]
       ],
     )
   ]
