@@ -432,6 +432,603 @@
   ]
 
   // ============================================================================
+  // Codex CLI Setup
+  // ============================================================================
+
+  #section-slide([Hands-on: Codex CLI einrichten])[]
+
+  // --------------------------------------------------------------------------
+  // Voraussetzung: Node.js
+  // --------------------------------------------------------------------------
+
+  #slide[
+    === 📦 Schritt 1: Node.js installieren
+
+    #v(0.5em)
+
+    #toolbox.side-by-side(
+      gutter: 3em,
+      [
+        *Windows:*
+
+        #v(0.5em)
+
+        + #link("https://nodejs.org")[nodejs.org] öffnen
+        + LTS-Version herunterladen (grüner Button)
+        + Installer ausführen → alles auf Standard lassen
+        + Terminal öffnen und prüfen:
+
+        #v(0.3em)
+
+        ```
+        node --version
+        ```
+
+        #v(0.3em)
+
+        → Sollte `v22.x.x` oder höher zeigen
+      ],
+      [
+        *Ubuntu / Linux:*
+
+        #v(0.5em)
+
+        Im Terminal:
+
+        #v(0.3em)
+
+        ```bash
+        # NodeSource-Repo hinzufügen
+        curl -fsSL https://deb.nodesource.com/setup_22.x \
+          | sudo -E bash -
+
+        # Node.js installieren
+        sudo apt install -y nodejs
+
+        # Prüfen
+        node --version
+        ```
+
+        #v(0.3em)
+
+        → Sollte `v22.x.x` oder höher zeigen
+      ],
+    )
+  ]
+
+  // --------------------------------------------------------------------------
+  // Codex CLI installieren
+  // --------------------------------------------------------------------------
+
+  #slide[
+    === 🚀 Schritt 2: Codex CLI installieren
+
+    #v(0.5em)
+
+    *Auf beiden Systemen gleich — ein Befehl im Terminal:*
+
+    #v(1em)
+
+    #align(center)[
+      #block(
+        fill: luma(245),
+        inset: 1.2em,
+        radius: 6pt,
+      )[
+        #text(size: 1.2em)[
+          `npm install -g @openai/codex`
+        ]
+      ]
+    ]
+
+    #v(1.5em)
+
+    #toolbox.side-by-side(
+      gutter: 3em,
+      [
+        *Prüfen ob es geklappt hat:*
+
+        #v(0.3em)
+
+        ```
+        codex --version
+        ```
+      ],
+      [
+        *Alternativ (Linux):*\
+        Binary direkt von GitHub herunterladen:
+
+        #v(0.3em)
+
+        #text(size: 0.85em)[
+          #link("https://github.com/openai/codex/releases/latest")[github.com/openai/codex/releases]
+        ]
+      ],
+    )
+  ]
+
+  // --------------------------------------------------------------------------
+  // Codex CLI starten
+  // --------------------------------------------------------------------------
+
+  #slide[
+    === ▶️ Schritt 3: Codex starten
+
+    #v(0.5em)
+
+    #toolbox.side-by-side(
+      gutter: 3em,
+      [
+        *Anmelden:*
+
+        #v(0.5em)
+
+        + Terminal öffnen
+        + `codex` eintippen
+        + _„Sign in with ChatGPT"_ wählen
+        + Browser öffnet sich → einloggen
+        + Fertig!
+
+        #v(1em)
+
+        #text(size: 0.85em, fill: meko_grey)[
+          Funktioniert mit ChatGPT Plus, Pro,\
+          Team, Edu oder Enterprise.
+        ]
+      ],
+      [
+        *Erster Befehl:*
+
+        #v(0.5em)
+
+        In einem Projektordner:
+
+        #v(0.3em)
+
+        ```
+        codex "Erkläre mir dieses Projekt"
+        ```
+
+        #v(1em)
+
+        Oder direkt eine Aufgabe:
+
+        #v(0.3em)
+
+        ```
+        codex "Erstelle eine README.md
+               für dieses Projekt"
+        ```
+      ],
+    )
+  ]
+
+  // ============================================================================
+  // Claude Code Setup
+  // ============================================================================
+
+  #section-slide([Hands-on: Claude Code einrichten])[]
+
+  // --------------------------------------------------------------------------
+  // Voraussetzung: Git
+  // --------------------------------------------------------------------------
+
+  #slide[
+    === 📦 Schritt 1: Voraussetzungen
+
+    #v(0.5em)
+
+    #toolbox.side-by-side(
+      gutter: 3em,
+      [
+        *Windows:*
+
+        #v(0.5em)
+
+        *Git for Windows* wird benötigt:
+
+        #v(0.3em)
+
+        + #link("https://git-scm.com/downloads/win")[git-scm.com/downloads/win] öffnen
+        + Installer herunterladen und ausführen
+        + Alles auf Standard lassen
+        + Prüfen:
+
+        #v(0.3em)
+
+        ```
+        git --version
+        ```
+      ],
+      [
+        *Ubuntu / Linux:*
+
+        #v(0.5em)
+
+        Git ist meistens schon da. Falls nicht:
+
+        #v(0.3em)
+
+        ```bash
+        sudo apt install -y git
+        ```
+
+        #v(0.5em)
+
+        Prüfen:
+
+        #v(0.3em)
+
+        ```bash
+        git --version
+        ```
+      ],
+    )
+  ]
+
+  // --------------------------------------------------------------------------
+  // Claude Code installieren
+  // --------------------------------------------------------------------------
+
+  #slide[
+    === 🚀 Schritt 2: Claude Code installieren
+
+    #v(0.5em)
+
+    #toolbox.side-by-side(
+      gutter: 3em,
+      [
+        *Windows (PowerShell):*
+
+        #v(0.5em)
+
+        ```powershell
+        irm https://claude.ai/install.ps1 | iex
+        ```
+
+        #v(1em)
+
+        *Windows (CMD):*
+
+        #v(0.5em)
+
+        ```
+        curl -fsSL https://claude.ai/install.cmd
+          -o install.cmd && install.cmd
+          && del install.cmd
+        ```
+      ],
+      [
+        *Ubuntu / Linux:*
+
+        #v(0.5em)
+
+        ```bash
+        curl -fsSL https://claude.ai/install.sh \
+          | bash
+        ```
+
+        #v(1.5em)
+
+        #text(size: 0.85em, fill: meko_grey)[
+          Aktualisiert sich automatisch im Hintergrund.
+        ]
+      ],
+    )
+
+    #v(1em)
+
+    *Prüfen:*
+
+    #v(0.3em)
+
+    ```
+    claude --version
+    ```
+  ]
+
+  // --------------------------------------------------------------------------
+  // Claude Code starten
+  // --------------------------------------------------------------------------
+
+  #slide[
+    === ▶️ Schritt 3: Claude Code starten
+
+    #v(0.5em)
+
+    #toolbox.side-by-side(
+      gutter: 3em,
+      [
+        *Anmelden:*
+
+        #v(0.5em)
+
+        + Terminal öffnen
+        + `claude` eintippen
+        + Browser öffnet sich → mit Claude-Konto einloggen
+        + Fertig!
+
+        #v(1em)
+
+        #text(size: 0.85em, fill: meko_grey)[
+          Benötigt ein Claude Pro, Team\
+          oder Enterprise Abo.
+        ]
+      ],
+      [
+        *Erster Befehl:*
+
+        #v(0.5em)
+
+        In einem Projektordner:
+
+        #v(0.3em)
+
+        ```
+        cd mein-projekt
+        claude
+        ```
+
+        #v(0.5em)
+
+        Dann im Chat:
+
+        #v(0.3em)
+
+        ```
+        > Erkläre mir dieses Projekt
+        ```
+
+        #v(0.5em)
+
+        ```
+        > Erstelle eine README.md
+        ```
+      ],
+    )
+  ]
+
+  // ============================================================================
+  // Erste Erfahrung: Mini-Projekt
+  // ============================================================================
+
+  #section-slide([Hands-on: Erstes Mini-Projekt])[]
+
+  // --------------------------------------------------------------------------
+  // Aufwärmen: Einfache Spiele
+  // --------------------------------------------------------------------------
+
+  #slide[
+    === 🕹️ Zum Aufwärmen: Ein Spiel in einer Datei
+
+    #v(0.3em)
+    #text(size: 0.9em, fill: meko_grey)[Alles was ihr braucht: ein Prompt und ein Agent]
+
+    #v(0.8em)
+
+    #grid(
+      columns: (1fr, 1fr, 1fr),
+      gutter: 1.5em,
+      [
+        *🧩 Memory*\
+        #v(0.3em)
+        #text(size: 0.9em)[Karten aufdecken, Paare finden]\
+        #text(size: 0.8em, fill: meko_grey)[🏥 Kunde & passendes Stent-Modell matchen]
+      ],
+      [
+        *📝 Galgenmännchen*\
+        #v(0.3em)
+        #text(size: 0.9em)[Wort erraten, Buchstabe für Buchstabe]\
+        #text(size: 0.8em, fill: meko_grey)[🏥 Medizintechnik-Begriffe raten]
+      ],
+      [
+        *🐍 Snake*\
+        #v(0.3em)
+        #text(size: 0.9em)[Klassiker — Schlange wächst]\
+        #text(size: 0.8em, fill: meko_grey)[🏥 Stent navigiert durch Blutgefäße]
+      ],
+      [
+        *❌⭕ Tic Tac Toe*\
+        #v(0.3em)
+        #text(size: 0.9em)[Drei in einer Reihe — gegen die KI]
+      ],
+      [
+        *🍬 Candy Crush*\
+        #v(0.3em)
+        #text(size: 0.9em)[Gleiche Farben verbinden]
+      ],
+      [
+        *🧮 2048*\
+        #v(0.3em)
+        #text(size: 0.9em)[Zahlen schieben & verdoppeln]
+      ],
+    )
+
+  ]
+
+  // --------------------------------------------------------------------------
+  // Beispiel-Prompts für Mini-Games
+  // --------------------------------------------------------------------------
+
+  #slide[
+    === 🕹️ Beispiel-Prompts
+
+    #v(0.5em)
+
+    #block(
+      fill: luma(245),
+      inset: 1em,
+      radius: 6pt,
+      width: 100%,
+    )[
+      *🧩 Memory:*\
+      #text(size: 0.85em)[
+        _„Erstelle ein Memory-Spiel als eine HTML-Datei.
+        12 Kartenpaare, modernes Design, mit Gewinn-Animation."_
+      ]
+    ]
+
+    #v(0.8em)
+
+    #block(
+      fill: luma(245),
+      inset: 1em,
+      radius: 6pt,
+      width: 100%,
+    )[
+      *📝 Galgenmännchen:*\
+      #text(size: 0.85em)[
+        _„Erstelle ein Galgenmännchen-Spiel als eine HTML-Datei.
+        Die Wörter sollen aus der Medizintechnik kommen
+        (z.B. Stent, Katheter, Angioplastie, Implantat, Bypass).
+        Zeige nach dem Erraten eine kurze Erklärung des Begriffs.
+        Modernes Design, Touch-tauglich für Tablets."_
+      ]
+    ]
+
+    #v(0.8em)
+
+    #align(center)[
+      #text(size: 0.9em, fill: meko_grey)[
+        Tipp: Einfach ausprobieren — der Agent erstellt, testet und verbessert iterativ.
+      ]
+    ]
+  ]
+
+  // --------------------------------------------------------------------------
+  // Aufgabe: IdeenExpo Mini-Game
+  // --------------------------------------------------------------------------
+
+  #slide[
+    === 🎮 Hausaufgabe: Mini-Game für die IdeenExpo
+
+    #v(0.3em)
+    #text(size: 0.9em, fill: meko_grey)[#link("https://www.ideenexpo.de")[ideenexpo.de] — MeKo hat einen kleinen Messestand]
+
+    #v(0.8em)
+
+    #toolbox.side-by-side(
+      gutter: 3em,
+      [
+        *Die Situation:*
+
+        #v(0.3em)
+
+        MeKo ist Hersteller von Stents —\
+        winzige Gitterröhrchen, die verengte\
+        Blutgefäße offen halten.
+
+        #v(0.8em)
+
+        Wir brauchen ein kleines Spiel für den\
+        Messestand, das Besucher (vor allem\
+        Jugendliche) anspricht.
+
+        #v(0.8em)
+
+        *Thema:* Stents, Herz-Kreislauf,\
+        Medizintechnik
+      ],
+      [
+        *Der Prompt:*
+
+        #v(0.3em)
+
+        #block(
+          fill: luma(245),
+          inset: 1em,
+          radius: 6pt,
+          width: 100%,
+        )[
+          #text(size: 0.7em)[
+            _„Erstelle ein kleines Browser-Spiel\
+            für unseren Messestand auf der IdeenExpo.\
+            Wir sind MeKo, ein Hersteller von Stents\
+            (Gefäßstützen). Das Spiel soll Jugendliche\
+            ansprechen und spielerisch erklären,\
+            was Stents sind und warum sie wichtig sind.\
+            Nutze HTML, CSS und JavaScript —\
+            alles in einer Datei."_
+          ]
+        ]
+
+        #v(0.2em)
+
+        #text(size: 0.85em, fill: meko_grey)[
+          Tipp: Einfach ausprobieren — der Agent\
+          erstellt, testet und verbessert iterativ.
+        ]
+      ],
+    )
+  ]
+
+  // --------------------------------------------------------------------------
+  // Aufgabe: Gesundheits-Quiz
+  // --------------------------------------------------------------------------
+
+  #slide[
+    === 🩺 Hausaufgabe, Beispiel: Herz-Kreislauf-Check
+
+    #v(0.3em)
+    #text(size: 0.9em, fill: meko_grey)[Ein interaktives Quiz für den Messestand]
+
+    #v(0.8em)
+
+    #toolbox.side-by-side(
+      gutter: 3em,
+      [
+        *Die Idee:*
+
+        #v(0.3em)
+
+        Besucher beantworten einfache Fragen\
+        zu ihren Gewohnheiten:
+
+        #v(0.3em)
+
+        - Wie oft bewegst du dich pro Woche?
+        - Isst du regelmäßig Obst & Gemüse?
+        - Wie viel Wasser trinkst du am Tag?
+        - Wie viele Stunden schläfst du?
+
+        #v(0.3em)
+
+        → Am Ende: ein Herz-Fitness-Score\
+        mit Tipps und Infos über Stents.
+      ],
+      [
+        *Der Prompt:*
+
+        #v(0.5em)
+
+        #block(
+          fill: luma(245),
+          inset: 1em,
+          radius: 6pt,
+          width: 100%,
+        )[
+          #text(size: 0.6em)[
+            _„Erstelle ein interaktives Herz-Kreislauf-Quiz\
+            als Web-App (eine HTML-Datei).\
+            Der Nutzer beantwortet 6–8 einfache Fragen\
+            zu Bewegung, Ernährung, Schlaf und Stress.\
+            Daraus wird ein Herz-Fitness-Score berechnet.\
+            Am Ende: Score-Anzeige mit Ampelfarben,\
+            persönliche Tipps und ein kurzer Infotext,\
+            was Stents sind.\
+            Zielgruppe: Jugendliche, modernes Design."_
+          ]
+        ]
+
+        #text(size: 0.85em, fill: meko_grey)[
+          Bonus: _„Füge einen QR-Code hinzu,\
+          der auf meko.de verlinkt."_
+        ]
+      ],
+    )
+  ]
+
+  // ============================================================================
   // Willison's Agentic Engineering Patterns
   // ============================================================================
 
@@ -807,16 +1404,6 @@
         - _„Commit diese Änderungen"_ → aussagekräftige Messages
         - _„Zeig mir die Änderungen von heute"_ → `git log`
         - _„Räum dieses Git-Chaos auf"_ → Merge-Konflikte lösen
-
-        #v(1em)
-
-        *Fortgeschritten:*
-
-        #v(0.5em)
-
-        - _„Finde meinen verlorenen Code"_ → Reflog durchsuchen
-        - _„Nutze git bisect"_ → Bug-Einführung finden
-        - _„Extrahiere das als Library"_ → mit History
       ],
       [
         #set align(horizon)
@@ -828,16 +1415,18 @@
         )[
           *Commit-History als erzählte Geschichte*
 
-          #v(0.5em)
+          #v(0.3em)
 
-          Agenten helfen beim Kuratieren:
+          #text(size: 0.85em)[
+            Agenten helfen beim Kuratieren:
 
-          - Commits zusammenfassen oder aufteilen
-          - Messages verbessern
-          - Dateien aus Commits entfernen
-          - Code in neue Repos extrahieren
+            - Commits zusammenfassen oder aufteilen
+            - Messages verbessern
+            - Dateien aus Commits entfernen
+            - Code in neue Repos extrahieren
+          ]
 
-          #v(0.5em)
+          #v(0.3em)
 
           → _Strategie_ statt Syntax
         ]
@@ -858,15 +1447,16 @@
       gutter: 3em,
       [
         *Das Problem:*\
-        Kontext-Fenster ist begrenzt (~200k Tokens optimal)
+        Kontext-Fenster ist begrenzt\
+        (ca. 200k Tokens) → Agent vergisst
 
-        #v(0.8em)
+        #v(0.3em)
 
         *Die Lösung:*\
         Agent startet frische Kopien von sich selbst —\
         jeweils mit eigenem Kontext-Fenster.
 
-        #v(0.8em)
+        #v(0.3em)
 
         ```
         Haupt-Agent
@@ -880,19 +1470,16 @@
       [
         *Spezialisierung:*
 
-        #v(0.5em)
-
         - 🔍 *Explorer* — Codebase analysieren
         - 🧪 *Testläufer* — Fehler isolieren
         - 📝 *Reviewer* — Bugs & Design-Schwächen finden
         - 🐛 *Debugger* — Ursachen untersuchen
 
-        #v(1em)
+        #v(0.3em)
 
         *Performance:*
-        - Parallel auf schnelleren/günstigeren Modellen
+        - Parallel auf günstigeren Modellen
         - Haupt-Agent behält wertvollen Kontext
-        - _„Nutze Subagenten um alle Templates zu aktualisieren"_
       ],
     )
   ]
@@ -938,7 +1525,7 @@
 
         *Warum besonders wichtig mit Agenten:*
 
-        #v(0.5em)
+        #v(0.3em)
 
         - Verhindert nicht-funktionierenden Code
         - Schützt vor unnötigen Features
@@ -947,9 +1534,8 @@
 
         #v(1em)
 
-        *Kritisch:*\
-        Red-Phase nie überspringen! Sonst riskiert man\
-        Tests, die _schon vorher_ bestanden haben.
+        *Achtung:*\
+        Red-Phase nie überspringen!
       ],
     )
   ]
@@ -1004,12 +1590,6 @@
         + *Discovery* — Agent findet & versteht die Test-Suite
         + *Kontext* — Test-Output zeigt Projektumfang & Komplexität
         + *Mindset* — Agent entwickelt Test-fokussierte Arbeitsweise
-
-        #v(1em)
-
-        Die alten Einwände — _„Tests schreiben dauert\
-        zu lange"_ — gelten nicht mehr, wenn Agenten\
-        sie in Minuten aktualisieren können.
       ],
     )
   ]
@@ -1043,14 +1623,6 @@
         - Web-APIs: Dev-Server starten + `curl` erkunden
         - Andere Sprachen: Demo-Dateien in `/tmp`
         - Browser: Playwright, agent-browser (Vercel)
-
-        #v(1em)
-
-        #text(size: 0.9em)[
-          Tipp: _„Starte einen Dev-Server und\
-          _erkunde_ die neue JSON-API mit curl"_\
-          → „erkunde" ermutigt zu Gründlichkeit
-        ]
       ],
       [
         *Der Kreislauf:*
@@ -1068,12 +1640,76 @@
               ↓
         Qualität steigt dauerhaft
         ```
+      ],
+    )
+  ]
+
+  // --------------------------------------------------------------------------
+  // Prüfen ist Pflicht
+  // --------------------------------------------------------------------------
+
+  #slide[
+    === ⚠️ Prüfen ist Pflicht — nicht nur beim Code
+
+    #v(0.5em)
+
+    #align(center)[
+      #text(size: 1.05em, style: "italic")[
+        „Vertrauen ist gut — Kontrolle ist bei KI-Ergebnissen unverzichtbar."
+      ]
+    ]
+
+    #v(1em)
+
+    #toolbox.side-by-side(
+      gutter: 3em,
+      [
+        *Daten & Analysen:*
 
         #v(0.5em)
 
-        _Automatische Tests allein reichen nicht —\
-        manuelles Testen deckt auf, was\
-        Test-Suites oft übersehen._
+        - Stimmen die Zahlen in der Excel-Tabelle?
+        - Sind Formeln und Bezüge korrekt?
+        - Fehlen Datensätze oder gibt es Ausreißer?
+        - Wurde die richtige Spalte aggregiert?
+
+        #v(0.8em)
+
+        *Texte & Dokumente:*
+
+        #v(0.5em)
+
+        - Fakten geprüft? (LLMs halluzinieren!)
+        - Quellen vorhanden und korrekt?
+        - Fachbegriffe richtig verwendet?
+      ],
+      [
+        *Präsentationen & Berichte:*
+
+        #v(0.5em)
+
+        - Passen Diagramm und Aussage zusammen?
+        - Sind Einheiten und Achsenbeschriftungen richtig?
+        - Stimmt die Schlussfolgerung mit den Daten überein?
+
+        #v(0.8em)
+
+        *Grundregel:*
+
+        #v(0.5em)
+
+        #block(
+          fill: luma(245),
+          inset: 1em,
+          radius: 6pt,
+          width: 100%,
+        )[
+          Je wichtiger die Entscheidung,\
+          desto gründlicher die Prüfung.\
+          \
+          *KI beschleunigt das Erstellen —\
+          nicht das Prüfen.*
+        ]
       ],
     )
   ]
