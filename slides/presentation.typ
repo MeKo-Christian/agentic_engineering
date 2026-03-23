@@ -2099,11 +2099,6 @@
   #section-slide([Appendix])[]
 
   #slide[
-    === Wie meine privaten Repos seit Claude Code angewachsen sind
-    #align(center + horizon)[#image("assets/more_private_repos.png", height: 85%)]
-  ]
-
-  #slide[
     === Claude Code: GitHub Commits
     #align(center + horizon)[#image("assets/claude_code_gh_commits.png", height: 85%)]
   ]
