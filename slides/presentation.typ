@@ -788,6 +788,78 @@
     )
   ]
 
+  // --------------------------------------------------------------------------
+  // Fallback: Web-Lösung
+  // --------------------------------------------------------------------------
+
+  #slide[
+    === 🌐 Workshop-Umgebung im Browser
+
+    #v(0.3em)
+    #text(size: 0.9em, fill: meko_grey)[Falls die lokale Installation nicht klappt]
+
+    #v(0.8em)
+
+    #toolbox.side-by-side(
+      gutter: 3em,
+      [
+        *Zugang:*
+
+        #v(0.5em)
+
+        + Öffne #link("https://workshop.apps.meko.dev")[workshop.apps.meko.dev]
+        + Melde dich an mit:
+
+        #v(0.3em)
+
+        #block(
+          fill: luma(245),
+          inset: 1em,
+          radius: 6pt,
+          width: 100%,
+        )[
+          *E-Mail:*\
+          `vorname.nachname@meko.local`
+
+          #v(0.3em)
+
+          *Passwort:*\
+          (dein MeKo-Passwort)
+        ]
+      ],
+      [
+        #set align(center + horizon)
+        // Screenshot der Login-Seite
+        #image("assets/workshop-login.png", height: 75%)
+      ],
+    )
+  ]
+
+  #slide[
+    === 🌐 Workshop-Oberfläche
+
+    #v(0.5em)
+
+    #toolbox.side-by-side(
+      gutter: 2em,
+      [
+        #set align(center)
+        #image("assets/workshop-desktop-select.png", height: 50%)
+        #v(0.5em)
+        #text(size: 0.85em)[Zum Starten des Desktops bitte diesen Button drücken.]
+      ],
+      [
+        #set align(center)
+        #image("assets/workshop-desktop-start.png", height: 80%)
+      ],
+    )
+  ]
+
+  #slide[
+    === 🌐 Workshop-Desktop
+    #align(center + horizon)[#image("assets/workshop-desktop.png", height: 85%)]
+  ]
+
   // ============================================================================
   // Erste Erfahrung: Mini-Projekt
   // ============================================================================
@@ -1810,6 +1882,16 @@
       [
         *Die Lösung:*
 
+        #block(
+          fill: luma(245),
+          inset: 1em,
+          radius: 6pt,
+          width: 100%,
+        )[
+          *KI kann nicht nur bauen —\
+          sie kann auch erklären.\
+          Beides nutzen!*
+        ]
         #v(0.5em)
 
         - Architektur-Entscheidungen dokumentieren
@@ -1876,6 +1958,77 @@
         Quelle: #link("https://simonwillison.net/guides/agentic-engineering-patterns/")[simonwillison.net/guides/agentic-engineering-patterns]
       ]
     ]
+  ]
+
+  // ============================================================================
+  // Fortgeschrittene Idee: Qualitäts-Quiz
+  // ============================================================================
+
+  #slide[
+    === 🔬 Idee: Qualitäts-Quiz mit echten Mikroskopbildern
+
+    #v(0.3em)
+    #text(size: 0.9em, fill: meko_grey)[MeKoRP + Dateisystem als Datenquelle]
+
+    #v(0.8em)
+
+    #toolbox.side-by-side(
+      gutter: 3em,
+      [
+        *Das Konzept:*
+
+        #v(0.5em)
+
+        - Zwei Mikroskopbilder vom selben Stent-Modell\
+          werden nebeneinander angezeigt
+        - Eins ist ein Gut-Teil, eins ein Schlecht-Teil
+        - Der Besucher muss raten: welches ist gut?
+        - Nach dem Raten: Auflösung + kurze Erklärung,\
+          worauf man achten muss
+
+        #v(0.8em)
+
+        *Datenquellen:*
+
+        #v(0.5em)
+
+        - Bilder: Dateisystem oder Dateiservice
+        - Metadaten: MeKoRP via GraphQL\
+          (Modell, Prüfergebnis, Los-Nr.)
+      ],
+      [
+        *Der Prompt:*
+
+        #v(0.5em)
+
+        #block(
+          fill: luma(245),
+          inset: 1em,
+          radius: 6pt,
+          width: 100%,
+        )[
+          #text(size: 0.75em)[
+            _„Erstelle ein Qualitäts-Quiz als Web-App.\
+            Die App soll Mikroskopbilder von Stents zeigen.\
+            \
+            Datenquelle: MeKoRP GraphQL-API.\
+            Lade für ein zufälliges Stent-Modell jeweils\
+            ein Gut-Teil und ein Schlecht-Teil.\
+            \
+            Zeige beide Bilder nebeneinander in zufälliger\
+            Reihenfolge. Der Nutzer klickt auf das Bild,\
+            das er für das Gut-Teil hält.\
+            \
+            Nach dem Klick: zeige ob richtig oder falsch,\
+            das Stent-Modell, die Los-Nummer und eine\
+            kurze Erklärung was den Unterschied ausmacht.\
+            \
+            Score zählen über mehrere Runden.\
+            Modernes Design, Touch-tauglich für Tablets."_
+          ]
+        ]
+      ],
+    )
   ]
 
   // ============================================================================
