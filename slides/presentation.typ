@@ -1350,10 +1350,374 @@
   ]
 
   // ============================================================================
+  // Wie geht es weiter? (Tool Survival)
+  // ============================================================================
+
+  #section-slide([Wie geht es weiter?])[]
+
+
+  // --------------------------------------------------------------------------
+  // Tool Survival
+  // --------------------------------------------------------------------------
+
+  #slide[
+    === 🔄 Tool-Lifecycle: Vom Experiment zum Unternehmenstool
+
+    #v(0.5em)
+
+    #toolbox.side-by-side(
+      gutter: 3em,
+      [
+        *Der typische Weg:*
+
+        #v(0.5em)
+
+        #align(center)[
+          ```
+          1. Experimentieren
+                   ↓
+          2. Wissen aufbauen
+                   ↓
+          3. Wiederholen
+                   ↓
+          4. Tool schreiben
+          ```
+        ]
+
+        #v(0.5em)
+
+        #text(size: 0.85em, fill: meko_grey)[
+          LLM + MCP ausprobieren → bewährte Aufrufe\
+          → parametrisierbares Script
+        ]
+      ],
+      [
+        *Wenn das Tool wächst:*
+
+        #v(0.5em)
+
+        #align(center)[
+          ```
+          5. Standalone-Tool
+                   ↓
+          6. Teilen
+                   ↓
+          7. Verteilen
+                   ↓
+          8. Software-Engineering
+          ```
+        ]
+
+        #v(0.5em)
+
+        #text(size: 0.85em, fill: meko_grey)[
+          Klar definiert, deploybar → Kollegen nutzen mit\
+          → Server statt Executables → klassische Prinzipien
+        ]
+      ],
+    )
+
+    #v(0.5em)
+
+    #align(center)[
+      #text(size: 0.85em, fill: meko_grey)[
+        → Stufen 1–4 entstehen beim Experimentieren. Was überlebt, wächst weiter.
+      ]
+    ]
+  ]
+
+  #slide[
+    === 🧬 Was Tools überleben lässt
+
+    #v(0.3em)
+
+    #align(center)[
+      #text(size: 1.0em, style: "italic")[
+        „Software überlebt, wenn sie mehr Kognition spart als sie kostet."
+      ]
+    ]
+    #align(center)[#text(
+      size: 0.8em,
+      fill: meko_grey,
+    )[Steve Yegge, _Software Survival 3.0_]]
+
+    #v(0.8em)
+
+    #toolbox.side-by-side(
+      gutter: 3em,
+      [
+        *Was Tools am Leben hält:*
+
+        #v(0.5em)
+
+        - *Komprimiertes Wissen* — löst, was schwer zu replizieren ist
+        - *Breite Nutzbarkeit* — amortisiert Lernaufwand
+        - *Geringe Friction* — funktioniert wie erwartet
+
+        → _„Make something crazy to re-synthesize"_
+      ],
+      [
+        *Was Tools sterben lässt:*
+
+        #v(0.5em)
+
+        - *Hohe Awareness-Kosten* — schwer zu\
+          entdecken oder zu lernen
+        - *Hohe Friction-Kosten* — Fehler,\
+          Missverständnisse
+        - *Enge Nutzungsszenarien* — zu spezifisch
+
+        #v(0.5em)
+
+        → Agenten synthetisieren lieber selbst
+      ],
+    )
+  ]
+
+  #slide[
+    === ⚙️ Substrate-Effizienz: Compute auf dem richtigen Substrat
+
+    #v(0.3em)
+
+    #align(center)[
+      #text(size: 1.0em, style: "italic")[
+        „Nobody is coming for grep."
+      ]
+    ]
+    #align(center)[#text(
+      size: 0.8em,
+      fill: meko_grey,
+    )[Steve Yegge, _Software Survival 3.0_]]
+
+    #v(0.8em)
+
+    #toolbox.side-by-side(
+      gutter: 3em,
+      [
+        *Das Prinzip:*
+
+        LLM-Inferenz ist das teuerste Rechensubstrat.
+
+        Tools, die Arbeit auf CPUs, Datenbanken oder\
+        Kalkulatoren verlagern, sparen Token per Definition.
+
+        → _„Pattern matching über Text: CPU schlägt GPU
+          um Größenordnungen."_
+      ],
+      [
+        *Beispiele — günstig schlägt intelligent:*
+
+        - `grep` — Mustererkennung auf CPU
+        - Taschenrechner — Arithmetik ohne Inferenz
+        - Datenbankabfragen — strukturierter Datenzugriff
+        
+        → Genau das macht MCP-Tools wertvoll:\
+        Echte Daten ohne LLM-Rekonstruktion
+      ],
+    )
+  ]
+
+  #slide[
+    === ⚠️ Die Skalierungsfalle: Teilen ist ein Engineering-Problem
+
+    #v(0.5em)
+
+    #toolbox.side-by-side(
+      gutter: 3em,
+      [
+        *Einzelner Nutzer:*
+
+        #v(0.5em)
+
+        - Eigene Annahmen, eigene Umgebung, eigene Daten
+        - Fehler = eigenes Problem
+        - Keine Distribution nötig
+      ],
+      [
+        *Im Team geteilt:*
+
+        #v(0.5em)
+
+        - Verschiedene Anforderungen, Umgebungen,\
+          Annahmen
+        - Bugs werden sichtbar — und wichtig
+        - Distribution und Versionierung nötig
+        - Sicherheit, Logging, Fehlerbehandlung
+
+        #v(0.5em)
+
+        → Klassisches Software-Engineering kehrt zurück
+      ],
+    )
+
+    #v(0.8em)
+
+    #align(center)[
+      #text(size: 0.9em, fill: meko_grey)[
+        Die Patterns dieses Talks — TDD, Git als Sicherheitsnetz, Kontext-Management — sind kein Zufall.
+      ]
+    ]
+  ]
+
+  #slide[
+    === 🌿 Evolution oder Redundanz im Tool-Ökosystem?
+
+    #v(0.5em)
+
+    #toolbox.side-by-side(
+      gutter: 3em,
+      [
+        *Die Realität im Team:*
+
+        #v(0.5em)
+
+        - Mehrere entwickeln ähnliche Tools unabhängig
+        - „Survival of the fittest" → Redundanz
+        - Agenten *können* helfen: zusammenführen,\
+          umschreiben, das Beste kombinieren
+
+        #v(0.5em)
+
+        → Aber der Engpass wird schnell:\
+        _Kommunikation & Anforderungsengineering_,
+        nicht das Coden selbst
+      ],
+      [
+        *Die richtige Haltung:*
+
+        #v(0.5em)
+
+        - Skepsis gegenüber eigenen Tools ist\
+          genauso wichtig wie gegenüber KI-Ausgaben
+        - Wegwerfprototyp oder Grundstein?\
+          Beides ist valide — wenn bewusst entschieden
+
+        #block(
+          fill: luma(245),
+          inset: 1em,
+          radius: 6pt,
+          width: 100%,
+        )[
+          #text(size: 0.85em)[
+            Was als Prototyp entsteht, könnte der Grundstein sein —\
+            oder der nächste Wegwerfprototyp.\
+            *Entscheidet bewusst.*
+          ]
+        ]
+      ],
+    )
+  ]
+
+  // ============================================================================
   // Appendix
   // ============================================================================
 
   #section-slide([Appendix])[]
+
+  #slide[
+    === Was sind Token?
+    #image("assets/token.png", width: 100%)
+    #v(0.4em)
+    #text(
+      size: 0.8em,
+      fill: meko_grey,
+    )[Sprachmodelle zerlegen Text in *Tokens* – häufig vorkommende Zeichenfolgen, grob vergleichbar mit Silben. Geläufige Wörter werden meist als einzelner Token erkannt; Tippfehler zwingen das Modell, ein Wort in mehrere Fragmente aufzuspalten. Faustregel: 1 Token ≈ 4 Zeichen, 100 Tokens ≈ 75 Wörter.]
+  ]
+
+  #slide[
+    === Was sind Token? — Übersetzung in Zahlen
+    #image("assets/token2.png", width: 100%)
+    #v(0.4em)
+    #text(
+      size: 0.8em,
+      fill: meko_grey,
+    )[Intern kennt ein Sprachmodell keine Buchstaben – nur Zahlen. Jeder Token wird einer eindeutigen ganzen Zahl zugeordnet. Was wir als lesbaren Text wahrnehmen, ist für das Modell eine Sequenz von Indizes in einem riesigen Vokabular – der eigentliche Eingabevektor, mit dem alle Berechnungen beginnen.]
+  ]
+
+  #slide[
+    === Token-Preise im Vergleich _(per 1M Tokens)_
+
+    #let htext(t) = text(fill: white, weight: "bold", size: 0.9em)[#t]
+    #let tier(a, b) = [#a #linebreak() #text(size: 0.82em, fill: meko_grey)[#b]]
+
+    #set text(size: 0.8em)
+    #table(
+      columns: (2fr, 1fr, 2fr, 2fr, 0.75fr),
+      align: (
+        left + horizon,
+        center + horizon,
+        right + horizon,
+        right + horizon,
+        center + horizon,
+      ),
+      stroke: 0.5pt + luma(210),
+      inset: (x: 0.65em, y: 0.55em),
+      fill: (_, row) => if row == 0 { meko_green } else if calc.odd(row) {
+        luma(248)
+      } else { white },
+
+      htext[Modell],
+      htext[Anbieter],
+      htext[Input /1M],
+      htext[Output /1M],
+      htext[Kontext],
+
+      [Claude Opus 4.7], [Anthropic], [\$5.00], [\$25.00], [200K],
+      [Claude Sonnet 4.6],
+      [Anthropic],
+      tier[\$3.00 / \$6.00][≤ / > 200K Tokens],
+      tier[\$15.00 / \$22.50][≤ / > 200K Tokens],
+      [1M],
+
+      [GPT-5.4],
+      [OpenAI],
+      tier[\$2.50 / \$5.00][< / > 272K Tokens],
+      tier[\$15.00 / \$22.50][< / > 272K Tokens],
+      [400K],
+
+      [GPT-5.5],
+      [OpenAI],
+      tier[\$5.00 / \$10.00][< / > 272K Tokens],
+      tier[\$30.00 / \$45.00][< / > 272K Tokens],
+      [—],
+
+      [GPT-5.5 Pro], [OpenAI], [\$30.00], [\$180.00], [—],
+    )
+
+    #v(0.35em)
+    #text(
+      size: 0.68em,
+      fill: meko_grey,
+    )[Cache-Reads/-Writes sowie Batch-Rabatte (50%) nicht dargestellt. · Preise Stand April 2026.]
+  ]
+
+  #slide[
+    === Prompt Caching — was steckt dahinter?
+
+    #v(0.1em)
+
+    Viele Anfragen an ein LLM enthalten einen langen, gleichbleibenden Teil – etwa einen ausführlichen System-Prompt, eine große Dokumentation oder einen langen Gesprächsverlauf. Ohne Caching wird dieser Block bei jeder Anfrage neu berechnet und vollständig in Rechnung gestellt.
+
+    #block(fill: luma(245), inset: 1em, radius: 6pt, width: 100%)[
+      *Wie Prompt Caching funktioniert:*\
+      #set text(size: 0.88em)
+      Das Modell speichert den verarbeiteten Zustand eines Prompt-Abschnitts zwischen. Folge-Anfragen, die denselben Prefix enthalten, lesen diesen Zustand aus dem Cache – statt ihn neu zu berechnen. Das spart sowohl Zeit als auch Kosten.
+    ]
+
+    #v(0.1em)
+
+    *Drei Preiskategorien im Vergleich:*
+
+    #set text(size: 0.8em)
+    - *Input (normal)* — voller Preis, keine Wiederverwendung
+    - *Cache Write* — ~25 % teurer als normaler Input; der Prefix wird einmalig im Cache abgelegt
+    - *Cache Read* — ~90 % günstiger als normaler Input; nachfolgende Anfragen lesen aus dem Cache
+  ]
+
+  #slide[
+    === Entwickeln mit KI im Vergleich zu klassischer Software-Entwicklung
+    #align(center + horizon)[#image("assets/ai-dev.jpg", height: 92%)]
+  ]
 
   #slide[
     === Claude Code: GitHub Commits
@@ -1570,6 +1934,14 @@
     === Gemini 3.1 Pro
     #align(center + horizon)[#image(
       "assets/gemini-3.1-pro-pelican.png",
+      height: 85%,
+    )]
+  ]
+
+  #slide[
+    === GLM 5.1
+    #align(center + horizon)[#image(
+      "assets/glm-5.1-pelican-fixed-medium-lossy.gif",
       height: 85%,
     )]
   ]
